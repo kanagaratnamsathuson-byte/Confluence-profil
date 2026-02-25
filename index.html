@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --accent: #2563eb;
+    --bg: #fafaf8;
+    --line: #e4e4e4;
+    --muted: #6b6b6b;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--black); padding: 3rem 2rem; }
+  .page { max-width: 900px; margin: 0 auto; }
+
+  .hero {
+    display: flex; align-items: center; gap: 2rem;
+    padding: 2.5rem; background: var(--black); border-radius: 12px;
+    margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both;
+  }
+  .avatar {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: #333; border: 3px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 2rem; color: white;
+    flex-shrink: 0;
+  }
+  .hero-text h1 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: white; line-height: 1.1; }
+  .hero-text p { color: #aaa; font-size: 0.85rem; margin-top: 0.4rem; letter-spacing: 0.05em; }
+  .tag {
+    display: inline-block; margin-top: 0.6rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    border: 1.5px solid var(--accent); padding: 0.25rem 0.7rem; border-radius: 2px;
+  }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .grid-full { grid-column: 1 / -1; }
+
+  .panel {
+    background: white; border: 1px solid var(--line);
+    border-radius: 10px; padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fadeUp 0.6s ease both;
+  }
+  .panel:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+
+  .panel-title {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+    padding-bottom: 0.6rem; border-bottom: 1px solid var(--line);
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip {
+    font-size: 0.78rem; background: var(--bg);
+    border: 1px solid var(--line); padding: 0.3rem 0.75rem;
+    border-radius: 999px; transition: all 0.2s; cursor: default;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); background: #eff6ff; }
+
+  .timeline { display: flex; flex-direction: column; gap: 0.75rem; }
+  .tl-item { display: flex; gap: 0.75rem; align-items: flex-start; }
+  .tl-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 0.4rem; flex-shrink: 0; }
+  .tl-text { font-size: 0.82rem; line-height: 1.5; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  th { background: var(--black); color: white; padding: 0.5rem 0.75rem; text-align: left; font-weight: 500; }
+  td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--line); }
+  tr:hover td { background: #eff6ff; color: var(--accent); }
+
+  .lang-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.5rem 0; border-bottom: 1px solid var(--line);
+    font-size: 0.85rem; transition: color 0.2s;
+  }
+  .lang-item:last-child { border-bottom: none; }
+  .lang-item:hover { color: var(--accent); }
+  .lang-level {
+    font-size: 0.72rem; background: var(--black); color: white;
+    padding: 0.2rem 0.6rem; border-radius: 999px;
+  }
+
+  .interest-chip {
+    font-size: 0.82rem; background: var(--black); color: white;
+    border: 1px solid var(--black); padding: 0.4rem 0.9rem;
+    border-radius: 999px; transition: all 0.2s; cursor: default;
+  }
+  .interest-chip:hover { background: var(--accent); border-color: var(--accent); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel:nth-child(1) { animation-delay: 0.1s; }
+  .panel:nth-child(2) { animation-delay: 0.2s; }
+  .panel:nth-child(3) { animation-delay: 0.3s; }
+  .panel:nth-child(4) { animation-delay: 0.4s; }
+  .panel:nth-child(5) { animation-delay: 0.5s; }
+  .panel:nth-child(6) { animation-delay: 0.6s; }
+  .panel:nth-child(7) { animation-delay: 0.7s; }
+
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    .grid-full { grid-column: 1; }
+    .hero { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="avatar">SK</div>
+    <div class="hero-text">
+      <h1>Sathuson Kanagaratnam</h1>
+      <p>Lernender Informatik · Plattformentwicklung</p>
+      <span class="tag">2. Lehrjahr · DO-BIS-COB</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="panel">
+      <p class="panel-title">🎯 Skills · 1. Lehrjahr</p>
+      <div class="chips">
+        <span class="chip">Programmieren</span>
+        <span class="chip">Betriebssysteme</span>
+        <span class="chip">Telematik</span>
+        <span class="chip">Datenbanken</span>
+        <span class="chip">IoT Grundlagen</span>
+        <span class="chip">Netze</span>
+        <span class="chip">Server & Dienste</span>
+        <span class="chip">Virtualisierung</span>
+        <span class="chip">IT-Sicherheit</span>
+        <span class="chip">Cloud</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="panel-title">⚡ Skills · 2. Lehrjahr (DO-BIS-COB)</p>
+      <div class="chips">
+        <span class="chip">Telefonie</span>
+        <span class="chip">LCM Staging</span>
+        <span class="chip">Visio Schemas</span>
+        <span class="chip">Bossy DB</span>
+        <span class="chip">Kupfer & Glas</span>
+        <span class="chip">L3 VLAN</span>
+        <span class="chip">QIP / Subnetting</span>
+        <span class="chip">WAN-Erschliessung</span>
+        <span class="chip">BIT-Hardware</span>
+        <span class="chip">WLAN Messung</span>
+        <span class="chip">WLAN Simulation</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="panel-title">💡 Interessen</p>
+      <div class="chips">
+        <span class="interest-chip">🐧 Linux</span>
+        <span class="interest-chip">🌐 Netzwerke</span>
+        <span class="interest-chip">🐍 Python</span>
+        <span class="interest-chip">🗄️ Datenbanken</span>
+        <span class="interest-chip">🐳 Docker</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="panel-title">🌍 Sprachen</p>
+      <div class="lang-item"><span>🇩🇪 Deutsch</span><span class="lang-level">Muttersprache</span></div>
+      <div class="lang-item"><span>🇬🇧 Englisch</span><span class="lang-level">B1</span></div>
+      <div class="lang-item"><span>🇫🇷 Französisch</span><span class="lang-level">A2</span></div>
+    </div>
+
+    <div class="panel grid-full">
+      <p class="panel-title">🛠️ Tätigkeiten · 2. Lehrjahr</p>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-text">Mitarbeit beim LCM S2S – Staging des Routertyps C1131-8PLTEPWE</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-text">Schemaerstellung und Anpassungen in Visio</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-text">Vertiefter Einsatz von Bossy (Datenbank Kundenstandorte)</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-text">Erstellung diverser L3-VLAN-Interfaces</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-text">Subnetzverwaltung im QIP (IP-Verwaltungstool)</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-text">Auswertung Stromverbrauch der BIT-Hardware</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-text">WLAN-Messung an Kundenstandort & WLAN-Simulation eines Standortes</div></div>
+      </div>
+    </div>
+
+    <div class="panel grid-full">
+      <p class="panel-title">🎓 Berufsschule · Module</p>
+      <table>
+        <tr><th>Modul</th><th>Beschreibung</th></tr>
+        <tr><td>431</td><td>Aufträge selbständig durchführen</td></tr>
+        <tr><td>319</td><td>Applikationen entwerfen und implementieren</td></tr>
+        <tr><td>117</td><td>Netzinfrastruktur realisieren</td></tr>
+        <tr><td>162</td><td>Daten analysieren & modellieren</td></tr>
+        <tr><td>231</td><td>Datenschutz & Datensicherheit</td></tr>
+        <tr><td>164</td><td>Datenbanken erstellen</td></tr>
+        <tr><td>122</td><td>Scriptsprache automatisieren</td></tr>
+        <tr><td>114</td><td>Verschlüsselungsverfahren einsetzen</td></tr>
+        <tr><td>129</td><td>LAN-Komponenten in Betrieb nehmen</td></tr>
+        <tr><td>123</td><td>Serverdienste in Betrieb nehmen</td></tr>
+        <tr><td>346</td><td>Cloud Lösungen konzipieren</td></tr>
+        <tr><td>141</td><td>Datenbanksystem in Betrieb nehmen</td></tr>
+        <tr><td>143</td><td>Backup & Restore implementieren</td></tr>
+        <tr><td>169</td><td>Services mit Container bereitstellen</td></tr>
+        <tr><td>187</td><td>ICT-Arbeitsplatz mit Betriebssystem in Betrieb nehmen</td></tr>
+        <tr><td>106</td><td>Datenbanken abfragen, bearbeiten und warten</td></tr>
+        <tr><td>216</td><td>Internet of Everything - Endgeräte integrieren</td></tr>
+        <tr><td>109</td><td>Dienste in der Public Cloud betreiben</td></tr>
+        <tr><td>184</td><td>Netzwerksicherheit implementieren</td></tr>
+        <tr><td>188</td><td>Services warten, überwachen und betreiben</td></tr>
+        <tr><td>190</td><td>Virtualisierungsplattform aufbauen und betreiben</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
